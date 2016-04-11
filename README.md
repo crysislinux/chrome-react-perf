@@ -18,10 +18,13 @@ https://chrome.google.com/webstore/detail/react-perf/hacmcodfllhbnekmghgdlplbdna
 ### Expose Perf
 Chrome React Perf rely on a global variable called Perf. There are several ways to do that.
 - use webpack's expose loader<br/>
+
   ```javascript
   import 'expose?Perf!react-addons-perf'
   ```
+
   or
+
   ```javascript
   loaders: [
     {
@@ -30,11 +33,14 @@ Chrome React Perf rely on a global variable called Perf. There are several ways 
     }
   ],
   ```
+
 - assign it to window
+
   ```javascript
   import Perf from 'react-addons-perf'
   window.Perf = Perf
   ```
+
 - If something goes wrong, [open an issue](https://github.com/crysislinux/chrome-react-perf/issues) or tweet me: [@crysislinux](https://twitter.com/crysislinux).
 
 ## Install dependencies
