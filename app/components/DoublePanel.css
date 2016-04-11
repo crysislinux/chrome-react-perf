@@ -1,0 +1,13 @@
+.doublePanel {
+  display: flex;
+  height: 100%;
+}
+
+.leftPanel {
+  height: 100%;
+}
+
+.rightPanel {
+  height: 100%;
+  flex-grow: 1;
+}

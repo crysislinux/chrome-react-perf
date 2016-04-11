@@ -1,0 +1,13 @@
+.handler {
+  height: 100%;
+  margin: 0 -4px;
+  position: relative;
+  z-index: 999;
+}
+
+.line {
+  height: 100%;
+  width: 0;
+  margin: 0 4px;
+  border-right: 1px solid #acacac;
+}

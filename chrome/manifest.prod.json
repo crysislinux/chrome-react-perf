@@ -1,0 +1,25 @@
+{
+  "name": "React Perf",
+  "version": "1.0.0",
+  "description": "A Operation Interface for react-addons-perf Package",
+
+  "icons": {
+    "16": "images/logo.png",
+    "48": "images/logo.png",
+    "128": "images/logo.png"
+  },
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
+  "manifest_version": 2,
+  "devtools_page": "devtools.html",
+  "permissions": ["<all_urls>", "tabs"],
+  "web_accessible_resources": ["page.bundle.js"],
+  "externally_connectable": {
+    "ids": ["*"]
+  }
+}

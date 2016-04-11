@@ -1,0 +1,21 @@
+.profileList {
+  background: #F3F3F3;
+  height: 100%;
+}
+
+.profileControl {
+  border-bottom: 1px solid #CACACA;
+  padding-left: 10px;
+}
+
+.profiles {
+
+}
+
+.label {
+  color: #666;
+  font-weight: normal;
+  padding-left: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+}

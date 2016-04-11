@@ -1,0 +1,14 @@
+.resultControl {
+  border-bottom: 1px solid #CACACA;
+  padding-left: 10px;
+}
+
+.result {
+  margin: 10px;
+  font-size: 11px;
+  font-family: Menlo, monospace;
+}
+
+.sectionTitle {
+  margin: 15px 0 5px;
+}

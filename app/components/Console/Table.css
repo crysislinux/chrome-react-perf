@@ -1,0 +1,32 @@
+.table {
+    border-collapse: collapse;
+    border: 1px solid #AAAAAA;
+    width: 100%;
+    text-align: left;
+}
+
+.tr:nth-child(even) {
+    background-color: #E6EFFA;
+}
+
+.th {
+    border: 1px solid #AAAAAA;
+    background: #EEEEEE;
+    padding: 2px;
+    font-weight: normal;
+}
+
+.td {
+  border: 1px solid #AAAAAA;
+  padding: 2px;
+}
+
+.stringCell {
+  composes: td;
+  color: red;
+}
+
+.numberCell {
+  composes: td;
+  color: blue;
+}
