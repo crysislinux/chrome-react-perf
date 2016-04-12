@@ -1,7 +1,7 @@
 {
-  "name": "web-plasma5",
-  "version": "0.0.0",
-  "description": "KDE Plasma 5 Desktop implemented with React&Redux",
+  "name": "chrome-react-perf",
+  "version": "1.0.1",
+  "description": "An Operation Interface for react-addons-perf Package",
   "scripts": {
     "dev": "node scripts/dev",
     "build": "NODE_ENV=production node scripts/build",
@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/crysislinux/web-plasma5.git"
+    "url": "https://github.com/crysislinux/chrome-react-perf.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/crysislinux/web-plasma5.git/issues"
+    "url": "https://github.com/crysislinux/chrome-react-perf/issues"
   },
   "dependencies": {
     "babel-polyfill": "^6.7.2",
