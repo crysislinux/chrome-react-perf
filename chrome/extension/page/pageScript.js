@@ -34,7 +34,6 @@ function onMessage(event) {
   }
 
   if (message.name === 'clean-up') {
-    window.removeEventListener('message', onMessage);
     window.Perf.stop();
   }
 

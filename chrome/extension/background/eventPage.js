@@ -21,7 +21,6 @@ import injectContent from './injectContent';
         portIdToTabIdMap[portId] = message.tabId;
         portIdToPortMap[portId] = port;
 
-        injectContent(message.tabId);
         return;
       }
 
@@ -59,6 +58,10 @@ import injectContent from './injectContent';
     /* eslint-disable no-console */
     if (sender.tab) {
       const tabId = sender.tab.id;
+      if (request.name === 'content-init' && request.source === 'chrome-react-perf') {
+        injectContent(tabId);
+        return;
+      }
       if (tabId in tabIdToPortMap) {
         tabIdToPortMap[tabId].postMessage(request);
       } else {

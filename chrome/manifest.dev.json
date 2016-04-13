@@ -9,6 +9,16 @@
     "128": "images/logo.png"
   },
 
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_globs": [ "https://www.google*" ],
+      "js": ["contentLoader.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+
   "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 'unsafe-eval'; connect-src http://localhost:3000 ws://localhost:3000; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;",
 
   "background": {

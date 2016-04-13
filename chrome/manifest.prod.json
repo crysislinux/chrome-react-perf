@@ -9,6 +9,16 @@
     "128": "images/logo.png"
   },
 
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_globs": [ "https://www.google*" ],
+      "js": ["contentLoader.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 
   "background": {

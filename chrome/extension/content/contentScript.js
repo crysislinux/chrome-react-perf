@@ -22,11 +22,6 @@
   }
 
   function onMessage(message, /* sender, sendResponse */) {
-    if (message.name === 'clean-up') {
-      window.removeEventListener('message', onPageMessage);
-      chrome.runtime.onMessage.removeListener(onMessage);
-    }
-
     // relay all messages to pageScript
     window.postMessage({ ...message, sender: 'contentScript' }, '*');
   }

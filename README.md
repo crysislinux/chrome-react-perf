@@ -3,8 +3,6 @@ Chrome React Perf
 ![Demo](demo/v1.0.0.gif)
 
 ## Features
-
-- Only inject script if Perf tab is open
 - Automatically show result when stop
 - Stop recording when Perf tab is closed
 

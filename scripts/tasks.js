@@ -7,5 +7,6 @@ exports.copyAssets = type => {
   mkdir(type);
   cp(`chrome/manifest.${env}.json`, `${type}/manifest.json`);
   cp('-R', 'chrome/assets/', type);
+  cp('chrome/extension/content/contentLoader.js', type);
   exec(`jade -O "{ env: '${env}' }" -o ${type} chrome/extension/views/`);
 };
