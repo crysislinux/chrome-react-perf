@@ -39,9 +39,23 @@ function showItems(state = { wasted: true, dom: false, inclusive: false,
   }
 }
 
+function perfs(state = { wasted: [], dom: [], inclusive: [], exclusive: [] }, action) {
+  const { type } = action;
+
+  switch (type) {
+    case ActionTypes.GET_PERF_DATA_SUCCESS:
+      return action.response;
+    case ActionTypes.START_RECORD_SUCCESS:
+      return { wasted: [], dom: [], inclusive: [], exclusive: [] };
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   recording,
   measurements,
+  perfs,
   showItems,
 });
 

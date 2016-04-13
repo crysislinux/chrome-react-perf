@@ -4,20 +4,25 @@ import { connect } from 'react-redux';
 import ResultControl from '../components/ResultControl';
 import {
   changeShowItems,
+  getPerfData,
 } from '../actions';
 
 const propTypes = {
+  recording: PropTypes.bool.isRequired,
   changeShowItems: PropTypes.func.isRequired,
   showItems: PropTypes.object.isRequired,
+  getPerfData: PropTypes.func.isRequired,
 };
 
-/* eslint-disable  react/prefer-stateless-function */
 class ResultControlContainer extends Component {
   static propTypes = propTypes;
 
-  constructor(props) {
-    super(props);
-    this.printWasted = false;
+  componentWillReceiveProps(nextProps) {
+    // get result after stop
+    if (this.props.recording && !nextProps.recording) {
+      // this.props.getWasted();
+      this.props.getPerfData();
+    }
   }
 
   render() {
@@ -33,11 +38,11 @@ class ResultControlContainer extends Component {
 function mapStateToProps(state) {
   return {
     recording: state.recording,
-    measurements: state.measurements,
     showItems: state.showItems,
   };
 }
 
 export default connect(mapStateToProps, {
   changeShowItems,
+  getPerfData,
 })(ResultControlContainer);

@@ -1,5 +1,4 @@
-/* global chrome */
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import DoublePanel from '../components/DoublePanel';
 import ProfileList from '../components/ProfileList';
@@ -7,8 +6,15 @@ import ProfileResult from '../components/ProfileResult';
 import {
   connect as connectToContentScript
 } from '../actions';
-/* eslint-disable  react/prefer-stateless-function */
+
 class App extends Component {
+  static propTypes = {
+    connectToContentScript: PropTypes.func.isRequired,
+    perfs: PropTypes.object.isRequired,
+    showItems: PropTypes.object.isRequired,
+    recording: PropTypes.bool.isRequired,
+  };
+
   componentWillMount() {
     this.props.connectToContentScript();
   }
@@ -17,7 +23,7 @@ class App extends Component {
       <DoublePanel>
         <ProfileList />
         <ProfileResult
-          measurements={this.props.measurements}
+          perfs={this.props.perfs}
           showItems={this.props.showItems}
           recording={this.props.recording}
         />
@@ -28,7 +34,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    measurements: state.measurements,
+    perfs: state.perfs,
     showItems: state.showItems,
     recording: state.recording,
   };

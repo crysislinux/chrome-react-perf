@@ -4,13 +4,11 @@ import * as ActionTypes from '../../actions/types';
 export const injectedActions = [
   ActionTypes.START_RECORD_REQUEST,
   ActionTypes.STOP_RECORD_REQUEST,
-  ActionTypes.GET_LAST_MEASUREMENTS_REQUEST,
 ];
 
 const actionToCommandMap = {
   [ActionTypes.START_RECORD_REQUEST]: 'Perf.start()',
   [ActionTypes.STOP_RECORD_REQUEST]: 'Perf.stop()',
-  [ActionTypes.GET_LAST_MEASUREMENTS_REQUEST]: 'Perf.getLastMeasurements()',
 };
 
 function executeCommand(command, callback) {

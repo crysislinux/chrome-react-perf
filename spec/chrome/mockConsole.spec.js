@@ -1,5 +1,5 @@
 /* eslint-disable no-undef, no-console */
-import mockConsole from '../../app/utils/mockConsole';
+import mockConsole from '../../chrome/extension/page/mockConsole';
 
 describe('Replace the target properties of console', () => {
   let callbacks;

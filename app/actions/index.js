@@ -39,21 +39,15 @@ export function stopRecord() {
   };
 }
 
-export function getLastMeasurements() {
+export function getPerfData() {
   return {
     [PERF_ACTION]: {
       types: [
-        ActionTypes.GET_LAST_MEASUREMENTS_REQUEST,
-        ActionTypes.GET_LAST_MEASUREMENTS_SUCCESS,
-        ActionTypes.GET_LAST_MEASUREMENTS_FAILURE
+        ActionTypes.GET_PERF_DATA_REQUEST,
+        ActionTypes.GET_PERF_DATA_SUCCESS,
+        ActionTypes.GET_PERF_DATA_FAILURE
       ]
     }
-  };
-}
-
-export function printResult() {
-  return {
-    type: ActionTypes.PRINT_RESULT
   };
 }
 

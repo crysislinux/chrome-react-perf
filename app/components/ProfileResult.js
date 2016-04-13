@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import ResultControlContainer from '../containers/ResultControlContainer';
-import shapeMeasurements from '../utils/shapeMeasurements';
 import Console from './Console';
 import styles from './ProfileResult.css';
 
 const propTypes = {
-  measurements: PropTypes.array.isRequired,
+  perfs: PropTypes.object.isRequired,
   showItems: PropTypes.object.isRequired,
   recording: PropTypes.bool.isRequired,
 };
@@ -18,15 +17,24 @@ export default class ProfileResult extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  renderSection(name) {
-    const { measurements, showItems } = this.props;
-    if (!showItems[name]) {
-      return null;
+  isEmpty(perfs) {
+    for (const p in perfs) {
+      if (perfs.hasOwnProperty(p)) {
+        if (perfs[p].length > 0) {
+          return false;
+        }
+      }
     }
 
-    const shapName = `get${this.capitalize(name)}`;
+    return true;
+  }
 
-    const messages = shapeMeasurements[shapName](measurements);
+  renderSection(name) {
+    const { perfs, showItems } = this.props;
+    const messages = perfs[name];
+    if (!showItems[name] || perfs[name].length === 0) {
+      return null;
+    }
 
     return (
       <div>
@@ -37,12 +45,14 @@ export default class ProfileResult extends Component {
   }
 
   renderResult() {
+    const empty = <div>Nothing to print. Click on "Start" to start recording</div>;
     return (
       <div>
         {this.renderSection('wasted')}
         {this.renderSection('dom')}
         {this.renderSection('inclusive')}
         {this.renderSection('exclusive')}
+        {this.isEmpty(this.props.perfs) && empty}
       </div>
     );
   }

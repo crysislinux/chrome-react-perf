@@ -1,4 +1,4 @@
-import Perf from 'react-addons-perf';
+/* global Perf, chrome */
 import mockConsole from './mockConsole';
 
 let placeToStoreValueTemporarily;
@@ -12,6 +12,8 @@ function saveLogValue(...args) {
   placeToStoreValueTemporarily.push(Array.prototype.join.call(args, ' '));
 }
 
+// react-addons-perf uses console.table && console.log to print output,
+// so we need to mock them to get the data.
 const callbacks = {
   table: saveTableValue,
   log: saveLogValue
@@ -28,9 +30,12 @@ export function getWasted(measurements) {
   return output;
 }
 
-export function getDom(measurements) {
+export function getDOM(measurements) {
   mockConsole.mock(callbacks);
-  Perf.printDOM(measurements);
+
+  const printDOM = Perf.printOperations || Perf.printDOM;
+  printDOM(measurements);
+
   mockConsole.restore();
 
   const output = JSON.parse(JSON.stringify(placeToStoreValueTemporarily));
@@ -63,7 +68,7 @@ export function getExclusive(measurements) {
 
 export default {
   getWasted,
-  getDom,
+  getDOM,
   getInclusive,
   getExclusive,
 };

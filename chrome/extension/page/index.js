@@ -1,1 +1,3 @@
-import './pageScript';
+import hookChromeReactPerf from './pageScript';
+
+hookChromeReactPerf();

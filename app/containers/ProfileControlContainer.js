@@ -1,21 +1,17 @@
-/* global chrome */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ProfileControl from '../components/ProfileControl';
 import {
   startRecord,
   stopRecord,
-  getLastMeasurements,
 } from '../actions';
 
 const propTypes = {
   recording: PropTypes.bool.isRequired,
   startRecord: PropTypes.func.isRequired,
   stopRecord: PropTypes.func.isRequired,
-  getLastMeasurements: PropTypes.func.isRequired,
 };
 
-/* eslint-disable  react/prefer-stateless-function */
 class ProfileListContainer extends Component {
   static propTypes = propTypes;
   constructor(props) {
@@ -26,7 +22,6 @@ class ProfileListContainer extends Component {
   handleToggleRecordClick() {
     if (this.props.recording) {
       this.props.stopRecord();
-      this.props.getLastMeasurements();
     } else {
       this.props.startRecord();
     }
@@ -53,5 +48,4 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   startRecord,
   stopRecord,
-  getLastMeasurements,
 })(ProfileListContainer);

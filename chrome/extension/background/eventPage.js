@@ -25,6 +25,9 @@ import injectContent from './injectContent';
         return;
       }
 
+      const tabId = portIdToTabIdMap[portId];
+      chrome.tabs.sendMessage(tabId, message);
+
       // other message handling
     }
 
