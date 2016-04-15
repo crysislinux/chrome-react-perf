@@ -56,6 +56,6 @@ Chrome React Perf rely on a global variable called Perf. There are several ways 
 
 ## Roadmap
 - [x] Start && Stop && Print
-- [ ] Get a better logo (Hope someone can help with this)
+- [x] Get a better logo (Thanks to [rubencodes](https://github.com/rubencodes))
 - [ ] Support multiple profiles
 - [ ] Save settings to localStorage
