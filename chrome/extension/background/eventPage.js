@@ -10,6 +10,7 @@ import injectContent from './injectContent';
 
   chrome.runtime.onConnect.addListener(port => {
     let portId;
+    let perfReady;
 
     function onMessage(message, /* sender, sendResponse */) {
       // The original connection event doesn't include the tab ID of the
@@ -20,8 +21,10 @@ import injectContent from './injectContent';
         tabIdToPortMap[message.tabId] = port;
         portIdToTabIdMap[portId] = message.tabId;
         portIdToPortMap[portId] = port;
+      }
 
-        return;
+      if (message.name === 'detect-perf') {
+        perfReady = message.data.found;
       }
 
       const tabId = portIdToTabIdMap[portId];
@@ -37,10 +40,12 @@ import injectContent from './injectContent';
       // Find the tab
       const tabId = portIdToTabIdMap[portId];
 
-      chrome.tabs.sendMessage(tabId, {
-        name: 'clean-up',
-        source: 'chrome-react-perf',
-      });
+      if (perfReady) {
+        chrome.tabs.sendMessage(tabId, {
+          name: 'clean-up',
+          source: 'chrome-react-perf',
+        });
+      }
 
       port.onMessage.removeListener(onMessage);
 

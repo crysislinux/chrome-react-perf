@@ -1,12 +1,15 @@
 /* global chrome */
 import * as ActionTypes from '../../actions/types';
+import {
+  detectPerf
+} from '../../actions';
 
 let backgroundPageConnection;
 const source = 'chrome-react-perf';
 
 const actionsRecorder = {};
 
-export function passMessage(action) {
+export function passMessage(action, next) {
   const tabId = chrome.devtools.inspectedWindow.tabId;
 
   const { message, types: [requestType] } = action;
@@ -17,6 +20,7 @@ export function passMessage(action) {
       });
       backgroundPageConnection.postMessage({
         name: 'devpanel-init',
+        source,
         tabId
       });
 
@@ -24,6 +28,12 @@ export function passMessage(action) {
         if (actionsRecorder[request.name] && actionsRecorder[request.name].length > 0) {
           const first = actionsRecorder[request.name].shift();
           first[0](request.data);
+        } else {
+          if (request.name === 'detect-perf') {
+            // I think it should not be handled here, maybe a new middleware is needed.
+            // But do not have that much time now.
+            next(detectPerf(request.data.found));
+          }
         }
       });
 

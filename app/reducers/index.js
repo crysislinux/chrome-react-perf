@@ -52,11 +52,23 @@ function perfs(state = { wasted: [], dom: [], inclusive: [], exclusive: [] }, ac
   }
 }
 
+function perfReady(state = false, action) {
+  const { type } = action;
+
+  switch (type) {
+    case ActionTypes.DETECT_PERF:
+      return action.found;
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   recording,
   measurements,
   perfs,
   showItems,
+  perfReady,
 });
 
 export default rootReducer;

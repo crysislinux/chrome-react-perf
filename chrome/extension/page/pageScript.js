@@ -15,6 +15,31 @@ const perfCallbacks = {
   [ActionTypes.GET_PERF_DATA_REQUEST]: getPerfData,
 };
 
+/**
+ * check whether window.Perf exist or not
+ * @return null
+ */
+function detectPerf() {
+  function report(found) {
+    window.postMessage({
+      name: 'detect-perf',
+      source: 'chrome-react-perf',
+      data: { found },
+      sender: 'pageScript'
+    }, '*');
+  }
+
+  function check() {
+    if (window.Perf) {
+      report(true);
+    } else {
+      setTimeout(check, 500);
+    }
+  }
+
+  check();
+}
+
 function onMessage(event) {
   const message = event.data;
 
@@ -35,6 +60,12 @@ function onMessage(event) {
 
   if (message.name === 'clean-up') {
     window.Perf.stop();
+    return;
+  }
+
+  if (message.name === 'devpanel-init') {
+    detectPerf();
+    return;
   }
 
   if (perfCallbacks[message.name]) {
@@ -45,10 +76,10 @@ function onMessage(event) {
       data: result,
       sender: 'pageScript'
     }, '*');
+    return;
   }
 }
 
 export default function hookChromeReactPerf() {
-  // testPostMesage();
   window.addEventListener('message', onMessage);
 }

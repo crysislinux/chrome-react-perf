@@ -22,7 +22,7 @@ export default store => next => action => {
   if (injectedActions.indexOf(requestType) !== -1) {
     performAction = inject(perfAction);
   } else {
-    performAction = passMessage(perfAction);
+    performAction = passMessage(perfAction, next);
   }
 
   next(actionWith({ type: requestType }));

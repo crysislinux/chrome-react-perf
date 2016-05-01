@@ -51,6 +51,13 @@ export function getPerfData() {
   };
 }
 
+export function detectPerf(found) {
+  return {
+    type: ActionTypes.DETECT_PERF,
+    found
+  };
+}
+
 export function changeShowItems(items) {
   return {
     type: ActionTypes.CHANGE_SHOW_ITEMS,
